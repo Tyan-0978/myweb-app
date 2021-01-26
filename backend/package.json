@@ -1,0 +1,8 @@
+{
+  "name": "myweb-app-server",
+  "version": "0.1.0",
+  "description": "Tyan0978's web app server",
+  "main": "server.js",
+  "author": "Tyan-0978",
+  "license": "MIT"
+}
