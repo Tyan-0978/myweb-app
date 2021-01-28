@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 
 import './home.css';
 
@@ -25,7 +27,7 @@ function Home() {
       </Row>
 
       <div className="home-status-div">
-        <h4>近況</h4>
+        <h4>近況（點擊查看）</h4>
         <Accordion>
           <Card>
 	    <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -63,6 +65,33 @@ function Home() {
 	    </Accordion.Collapse>
 	  </Card>
         </Accordion>
+      </div>
+
+      <div className="home-link-wrapper">
+        <ButtonGroup aria-label="link-group">
+          <Button
+	    href="https://twitter.com/GODSPEED_TW"
+	    variant="primary"
+	    target="_blank"
+	  >
+	    Twitter
+	  </Button>
+          <Button
+	    href="https://www.youtube.com/channel/UCtkKQpz2ICrlsDlD5D28InQ"
+	    variant="danger"
+	    target="_blank"
+	  >
+	    YouTube
+	  </Button>
+
+          <Button
+	    href="https://github.com/Tyan0978"
+	    variant="info"
+	    target="_blank"
+	  >
+	    舊Github(垃圾桶)
+	  </Button>
+        </ButtonGroup>
       </div>
     </Container>
   );
