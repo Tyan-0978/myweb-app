@@ -6,3 +6,6 @@ yarn-error.log*
 
 # vim swap files
 *.swp
+
+# eslint
+.eslintcache
