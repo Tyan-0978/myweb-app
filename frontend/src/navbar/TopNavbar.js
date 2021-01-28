@@ -7,16 +7,14 @@ import './TopNavbar.css';
 
 function TopNavbar() {
   return (
-    <Navbar bg='dark' variant='dark'>
+    <Navbar bg='dark' variant='dark' expand="sm">
       <Container className="navbar-container">
-        <LinkContainer to="/home">
-          <Navbar.Brand>田祐行</Navbar.Brand>
-	</LinkContainer>
+        <Navbar.Brand className="navbar-title">田祐行的個人網站</Navbar.Brand>
 
-	<Navbar.Toggle aria-controls='main-navbar' />
-	<Navbar.Collapse id='main-navbar'>
-	  <Nav className="mr-auto">
-            <LinkContainer to="/home">
+	<Navbar.Toggle aria-controls="top-navbar" />
+	<Navbar.Collapse id="top-navbar">
+	  <Nav className="ml-auto">
+            <LinkContainer exact to="/">
 	      <Nav.Link>主頁</Nav.Link>
 	    </LinkContainer>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import TopNavbar from './navbar/TopNavbar.js';
 import Home from './home/Home.js';
@@ -11,15 +11,15 @@ function App() {
     <>
       <TopNavbar />
       <Switch>
-        <Route exact path="/home">
+        <Route exact path="/">
 	  <Home />
 	</Route>
 
-        <Route exact path="/blog">
+        <Route path="/blog">
 	  <Blog />
 	</Route>
 
-        <Route exact path="/chat">
+        <Route path="/chat">
 	  <Chat />
 	</Route>
       </Switch>
