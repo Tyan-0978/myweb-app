@@ -1,20 +1,28 @@
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+import TopNavbar from './navbar/TopNavbar.js';
+import Home from './home/Home.js';
+import Blog from './blog/Blog.js';
+import Chat from './chat/Chat.js';
 
 function App() {
   return (
     <>
-      <Navbar bg='dark' variant='dark'>
-        <Navbar.Brand href='/'>田祐行</Navbar.Brand>
-	<Navbar.Toggle aria0controls='main-navbar' />
-	<Navbar.Collapse id='main-navbar'>
-	  <Nav className="mr-auto">
-	    <Nav.Link href='#'>Home</Nav.Link>
-	    <Nav.Link href='#'>Blog</Nav.Link>
-	    <Nav.Link href='#'>Comments</Nav.Link>
-	  </Nav>
-	</Navbar.Collapse>
-      </Navbar>
+      <TopNavbar />
+      <Switch>
+        <Route exact path="/home">
+	  <Home />
+	</Route>
+
+        <Route exact path="/blog">
+	  <Blog />
+	</Route>
+
+        <Route exact path="/chat">
+	  <Chat />
+	</Route>
+      </Switch>
     </>
   );
 }
