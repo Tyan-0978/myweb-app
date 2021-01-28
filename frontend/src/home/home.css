@@ -3,6 +3,10 @@
   padding: 12px 12px;
 }
 
-.description-col {
+.home-description-col {
   padding: 20px;
+}
+
+.home-status-div {
+  padding: 30px 20px;
 }
