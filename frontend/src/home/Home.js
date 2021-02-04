@@ -27,10 +27,13 @@ function Home() {
       </Row>
 
       <div className="home-status-div">
-        <h4>近況（點擊查看）</h4>
+        <h4>近況</h4>
         <Accordion>
           <Card>
-	    <Accordion.Toggle as={Card.Header} eventKey="0">
+	    <Accordion.Toggle
+	      as={Card.Header} eventKey="0"
+	      className="home-status-card"
+	    >
 	      學校
 	    </Accordion.Toggle>
 	    <Accordion.Collapse eventKey="0">
@@ -39,7 +42,10 @@ function Home() {
 	  </Card>
 
           <Card>
-	    <Accordion.Toggle as={Card.Header} eventKey="1">
+	    <Accordion.Toggle
+	      as={Card.Header} eventKey="1"
+	      className="home-status-card"
+	    >
 	      日常生活
 	    </Accordion.Toggle>
 	    <Accordion.Collapse eventKey="1">
@@ -48,7 +54,10 @@ function Home() {
 	  </Card>
 
           <Card>
-	    <Accordion.Toggle as={Card.Header} eventKey="2">
+	    <Accordion.Toggle
+	      as={Card.Header} eventKey="2"
+	      className="home-status-card"
+	    >
 	      朋友
 	    </Accordion.Toggle>
 	    <Accordion.Collapse eventKey="2">
@@ -57,7 +66,10 @@ function Home() {
 	  </Card>
 
           <Card>
-	    <Accordion.Toggle as={Card.Header} eventKey="3">
+	    <Accordion.Toggle
+	      as={Card.Header} eventKey="3"
+	      className="home-status-card"
+	    >
 	      其他
 	    </Accordion.Toggle>
 	    <Accordion.Collapse eventKey="3">

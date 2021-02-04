@@ -15,3 +15,8 @@
   display: flex;
   justify-content: center;
 }
+
+.home-status-card:hover {
+  cursor: pointer;
+  background-color: #b3b3b3;
+}
