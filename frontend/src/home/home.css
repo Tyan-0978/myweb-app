@@ -16,7 +16,44 @@
   justify-content: center;
 }
 
-.home-status-card:hover {
+.home-status-card.light {
+  border-color: #e1e1e1;
+}
+
+.home-status-card.dark {
+  border-color: #777777;
+}
+
+.home-status-card-toggle {
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+}
+
+.home-status-card-toggle:hover {
   cursor: pointer;
+}
+
+.home-status-card-toggle.light {
+  background-color: #f0f0f0;
+}
+
+.home-status-card-toggle.light:hover {
   background-color: #b3b3b3;
+}
+
+.home-status-card-toggle.dark {
+  background-color: #606060;
+}
+
+.home-status-card-toggle.dark:hover {
+  background-color: #505050;
+}
+
+.home-status-collapse {
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+}
+
+.home-status-collapse.dark {
+  background-color: #363636;
 }

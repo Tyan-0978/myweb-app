@@ -5,9 +5,12 @@ import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 import './topNavbar.css';
 
-function TopNavbar() {
+function TopNavbar(props) {
   return (
-    <Navbar bg='dark' variant='dark' expand="sm">
+    <Navbar
+      bg={ props.theme } variant={ props.theme } expand="sm"
+      className="top-navbar"
+    >
       <Container className="navbar-container">
         <Navbar.Brand className="navbar-title">田祐行的個人網站</Navbar.Brand>
 
@@ -26,6 +29,11 @@ function TopNavbar() {
 	      <Nav.Link>留言版</Nav.Link>
 	    </LinkContainer>
 	  </Nav>
+
+	  <label className="top-navbar-switch">
+	    <input type="checkbox" onChange={ props.switchTheme } />
+	    <span className="top-navbar-switch-slider"></span>
+	  </label>
 	</Navbar.Collapse>
       </Container>
     </Navbar>

@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 
 import './home.css';
 
-function Home() {
+function Home(props) {
   return (
     <Container className="home-container">
       <Row>
@@ -29,50 +29,62 @@ function Home() {
       <div className="home-status-div">
         <h4>近況</h4>
         <Accordion>
-          <Card>
+          <Card className={ `home-status-card ${props.theme}` }>
 	    <Accordion.Toggle
 	      as={Card.Header} eventKey="0"
-	      className="home-status-card"
+	      className={ `home-status-card-toggle ${props.theme}` }
 	    >
 	      學校
 	    </Accordion.Toggle>
-	    <Accordion.Collapse eventKey="0">
+	    <Accordion.Collapse
+	      eventKey="0"
+	      className={ `home-status-collapse ${props.theme}` }
+	    >
 	      <Card.Body>期末project爆炸，心態也爆炸之後放寒假中</Card.Body>
 	    </Accordion.Collapse>
 	  </Card>
 
-          <Card>
+          <Card className={ `home-status-card ${props.theme}` }>
 	    <Accordion.Toggle
 	      as={Card.Header} eventKey="1"
-	      className="home-status-card"
+	      className={ `home-status-card-toggle ${props.theme}` }
 	    >
 	      日常生活
 	    </Accordion.Toggle>
-	    <Accordion.Collapse eventKey="1">
+	    <Accordion.Collapse
+	      eventKey="1"
+	      className={ `home-status-collapse ${props.theme}` }
+	    >
 	      <Card.Body>寫網站、寫kshoot譜、玩遊戲</Card.Body>
 	    </Accordion.Collapse>
 	  </Card>
 
-          <Card>
+          <Card className={ `home-status-card ${props.theme}` }>
 	    <Accordion.Toggle
 	      as={Card.Header} eventKey="2"
-	      className="home-status-card"
+	      className={ `home-status-card-toggle ${props.theme}` }
 	    >
 	      朋友
 	    </Accordion.Toggle>
-	    <Accordion.Collapse eventKey="2">
+	    <Accordion.Collapse
+	      eventKey="2"
+	      className={ `home-status-collapse ${props.theme}` }
+	    >
 	      <Card.Body>有點少QQ</Card.Body>
 	    </Accordion.Collapse>
 	  </Card>
 
-          <Card>
+          <Card className={ `home-status-card ${props.theme}` }>
 	    <Accordion.Toggle
 	      as={Card.Header} eventKey="3"
-	      className="home-status-card"
+	      className={ `home-status-card-toggle ${props.theme}` }
 	    >
 	      其他
 	    </Accordion.Toggle>
-	    <Accordion.Collapse eventKey="3">
+	    <Accordion.Collapse
+	      eventKey="3"
+	      className={ `home-status-collapse ${props.theme}` }
+	    >
 	      <Card.Body>大二下終於有通識了555</Card.Body>
 	    </Accordion.Collapse>
 	  </Card>
