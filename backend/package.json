@@ -16,5 +16,6 @@
   },
   "dependencies": {
     "nodemon": "^2.0.7"
-  }
+  },
+  "type": "module"
 }
