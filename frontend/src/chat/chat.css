@@ -1,0 +1,10 @@
+.chat-container {
+  max-width: 1200px;
+  overflow-x: hidden;
+  padding: 12px 12px;
+}
+
+.chat-sidebar-item {
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+}

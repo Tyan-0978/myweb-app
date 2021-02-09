@@ -31,7 +31,7 @@ function App() {
 	</Route>
 
         <Route path="/chat">
-	  <Chat />
+	  <Chat theme={ theme } />
 	</Route>
       </Switch>
     </ThemeProvider>
