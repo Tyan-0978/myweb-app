@@ -5,16 +5,19 @@ import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import './chat.css';
-import useWidth from './useWidth.js';
+import useSize from './useSize.js';
 
 function Chat(props) {
-  const width = useWidth();
+  const [width, height] = useSize();
+
+  const isNarrow = width < 576; // bootstrap sm
+  const bodyHeight = isNarrow ? (height - 150) : (height - 100);
 
   return (
     <Container className="chat-container">
       <Row>
         <Col sm={3}>
-	  <ListGroup horizontal={ width < 576 }>
+	  <ListGroup horizontal={ isNarrow }>
 	    <ListGroup.Item
 	      action variant={ props.theme }
 	      className="chat-sidebar-item"
@@ -41,8 +44,13 @@ function Chat(props) {
 	    </ListGroup.Item>
 	  </ListGroup>
 	</Col>
-	<Col sm={9}>
-	  chat
+	<Col sm={9} style={{ height: bodyHeight }}>
+	  <div className="chat-messages" style={{ height: bodyHeight - 30 }}>
+	    messages
+	  </div>
+	  <div className="chat-sender">
+	    chat sender
+	  </div>
 	</Col>
       </Row>
     </Container>

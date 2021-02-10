@@ -8,3 +8,18 @@
   transition: 0.4s;
   -webkit-transition: 0.4s;
 }
+
+.chat-body {
+  min-height: 100%;
+  border: 1px solid black;
+}
+
+.chat-messages {
+  border: 1px solid black;
+}
+
+.chat-sender {
+  position: absolute;
+  bottom: 0;
+  border: 1px solid black;
+}
