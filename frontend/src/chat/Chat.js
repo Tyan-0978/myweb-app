@@ -5,13 +5,16 @@ import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import './chat.css';
+import useWidth from './useWidth.js';
 
 function Chat(props) {
+  const width = useWidth();
+
   return (
     <Container className="chat-container">
       <Row>
         <Col sm={3}>
-	  <ListGroup>
+	  <ListGroup horizontal={ width < 576 }>
 	    <ListGroup.Item
 	      action variant={ props.theme }
 	      className="chat-sidebar-item"
