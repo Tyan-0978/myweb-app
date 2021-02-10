@@ -21,5 +21,6 @@
 .chat-sender {
   position: absolute;
   bottom: 0;
-  border: 1px solid black;
+  left: 12px;
+  right: 12px;
 }
