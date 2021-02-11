@@ -24,3 +24,11 @@
   left: 12px;
   right: 12px;
 }
+
+.chat-columns {
+  padding: 5px 5px 0;
+}
+
+.chat-message-input {
+  resize: none;
+}
