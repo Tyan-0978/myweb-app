@@ -26,7 +26,7 @@ function TopNavbar(props) {
 	    </LinkContainer>
 
             <LinkContainer to="/chat">
-	      <Nav.Link>留言版</Nav.Link>
+	      <Nav.Link>閒聊版</Nav.Link>
 	    </LinkContainer>
 	  </Nav>
 
