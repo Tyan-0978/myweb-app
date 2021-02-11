@@ -14,7 +14,7 @@
   border: 1px solid black;
 }
 
-.chat-messages {
+.chat-message-list {
   border: 1px solid black;
 }
 
@@ -29,6 +29,33 @@
   padding: 5px 5px 0;
 }
 
-.chat-message-input {
+.chat-input-prepend {
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+}
+
+.chat-input-prepend.dark {
+  background-color: #444;
+  color: #fff;
+  border-color: #606060;
+}
+
+.chat-input-form {
   resize: none;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+}
+
+.chat-input-form.dark {
+  background-color: #555;
+  color: #fff;
+  border-color: #606060;
+}
+
+.chat-input-form-body {
+  resize: none;
+}
+
+.chat-submit.dark {
+  background-color: #555;
 }

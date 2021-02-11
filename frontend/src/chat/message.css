@@ -1,0 +1,17 @@
+.message-item {
+  padding: 5px 0;
+  margin: 5px 0px;
+  border-width: 2px;
+  border-style: hidden;
+  border-radius: 16px;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+}
+
+.message-name {
+  overflow-wrap: break-word;
+}
+
+.message-body {
+  overflow-wrap: break-word;
+}

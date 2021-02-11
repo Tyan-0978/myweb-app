@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -11,17 +11,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './chat.css';
 import useSize from './useSize.js';
+import Message from './Message.js';
 
 function Chat(props) {
-  const inputRef = useRef(null);
+  const [messageName, setMessageName] = useState("");
+  const [messageBody, setMessageBody] = useState("");
   const [width, height] = useSize();
+  const inputRef = useRef(null);
 
+  // parameters for div height settings
   const isNarrow = width < 576; // bootstrap sm
   const bodyHeight = isNarrow ? (height - 150) : (height - 100);
   const senderHeight = isNarrow ? 90 : 50;
 
   const handleSubmit = () => {
-    console.log("send message");
+    console.log(messageName);
+    console.log(messageBody);
   };
 
   return (
@@ -57,20 +62,26 @@ function Chat(props) {
 	</Col>
 
 	<Col sm={9} style={{ height: bodyHeight }}>
-	  <ul className="chat-messages" style={{ height: bodyHeight - senderHeight }}>
-	    <li>one</li>
-	    <li>two</li>
-	  </ul>
+	  <Container style={{ height: bodyHeight - senderHeight }}>
+	    <Message name="aaaaaaaaaaaaaaaaa" body="1234" theme={ props.theme } />
+	    <Message name="bb" body="5678" theme={ props.theme } />
+	  </Container>
 	  <div className="chat-sender">
 	    <Form onSubmit={ e => e.preventDefault() }>
 	      <Form.Row>
-	        <Col sm={4} xs={6} className="chat-columns">
+	        <Col sm={4} xs={8} className="chat-columns">
 		  <InputGroup>
-		    <InputGroup.Prepend>
-		      <InputGroup.Text>暱稱</InputGroup.Text>
+		    <InputGroup.Prepend className={ `chat-input-prepend ${props.theme}` }>
+		      <InputGroup.Text
+		        className={ `chat-input-prepend ${props.theme}` }
+		      >
+		        暱稱
+		      </InputGroup.Text>
 		    </InputGroup.Prepend>
 		    <Form.Control
 		      type="text" placeholder=""
+		      className={ `chat-input-form ${props.theme}` }
+		      onChange={ (e) => setMessageName(e.target.value) }
 		      onKeyUp={(e) => {
 			if (e.key === "Enter") {
 		          e.preventDefault();
@@ -84,11 +95,17 @@ function Chat(props) {
 		<Col sm={6} xs={10} className="chat-columns">
 		  <InputGroup>
 		    <InputGroup.Prepend>
-		      <InputGroup.Text>訊息</InputGroup.Text>
+		      <InputGroup.Text
+		        className={ `chat-input-prepend ${props.theme}` }
+		      >
+		        訊息
+		      </InputGroup.Text>
 		    </InputGroup.Prepend>
 		    <Form.Control
 		      as="textarea" rows={1} ref={ inputRef }
-		      className="chat-message-input"
+		      className="chat-input-form-body"
+		      className={ `chat-input-form ${props.theme}` }
+		      onChange={ e => setMessageBody(e.target.value) }
 		      onKeyDown={(e) => {
 		        if (e.keyCode === 13 && !e.shiftKey) {
 		          e.preventDefault();
@@ -100,7 +117,10 @@ function Chat(props) {
 		</Col>
 
 		<Col sm={2} xs={2} className="chat-columns">
-		  <Button variant={ props.theme } onClick={ handleSubmit }>
+		  <Button
+		    variant={ props.theme } onClick={ handleSubmit }
+                    className={ `chat-submit ${props.theme}` }
+		  >
 		    <FontAwesomeIcon icon="paper-plane" />
 		  </Button>
 		</Col>
