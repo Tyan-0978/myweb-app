@@ -9,6 +9,11 @@
   -webkit-transition: 0.4s;
 }
 
+.chat-sidebar-item.dark {
+  background-color: #555;
+  color: #fff;
+}
+
 .chat-body {
   min-height: 100%;
   border: 1px solid black;

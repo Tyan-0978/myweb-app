@@ -34,27 +34,23 @@ function Chat(props) {
       <Row>
         <Col sm={3}>
 	  <ListGroup horizontal={ isNarrow }>
-	    <ListGroup.Item
-	      action variant={ props.theme }
-	      className="chat-sidebar-item"
+	    <ListGroup.Item action
+	      className={ `chat-sidebar-item ${props.theme}` }
 	    >
 	      一般
 	    </ListGroup.Item>
-	    <ListGroup.Item
-	      action variant={ props.theme }
-	      className="chat-sidebar-item"
+	    <ListGroup.Item action
+	      className={ `chat-sidebar-item ${props.theme}` }
 	    >
 	      學校
 	    </ListGroup.Item>
-	    <ListGroup.Item
-	      action variant={ props.theme }
-	      className="chat-sidebar-item"
+	    <ListGroup.Item action
+	      className={ `chat-sidebar-item ${props.theme}` }
 	    >
 	      食物
 	    </ListGroup.Item>
-	    <ListGroup.Item
-	      action variant={ props.theme }
-	      className="chat-sidebar-item"
+	    <ListGroup.Item action
+	      className={ `chat-sidebar-item ${props.theme}` }
 	    >
 	      音G
 	    </ListGroup.Item>
@@ -103,8 +99,7 @@ function Chat(props) {
 		    </InputGroup.Prepend>
 		    <Form.Control
 		      as="textarea" rows={1} ref={ inputRef }
-		      className="chat-input-form-body"
-		      className={ `chat-input-form ${props.theme}` }
+		      className={ `chat-input-form-body chat-input-form ${props.theme}` }
 		      onChange={ e => setMessageBody(e.target.value) }
 		      onKeyDown={(e) => {
 		        if (e.keyCode === 13 && !e.shiftKey) {
