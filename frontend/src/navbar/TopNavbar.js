@@ -8,7 +8,7 @@ import './topNavbar.css';
 function TopNavbar(props) {
   return (
     <Navbar
-      bg={ props.theme } variant={ props.theme } expand="sm"
+      bg={ props.theme } variant={ props.theme } expand="sm" collapseOnSelect
       className="top-navbar"
     >
       <Container className="navbar-container">
