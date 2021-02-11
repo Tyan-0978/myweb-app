@@ -5,10 +5,15 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './themes/GlobalStyles.js';
 import { lightTheme, darkTheme } from './themes/Themes.js';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
 import TopNavbar from './navbar/TopNavbar.js';
 import Home from './home/Home.js';
 import Blog from './blog/Blog.js';
 import Chat from './chat/Chat.js';
+
+library.add(faPaperPlane);
 
 function App() {
   const [theme, setTheme] = useState("light");
