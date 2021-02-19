@@ -5,6 +5,7 @@
   "main": "server.js",
   "author": "Tyan-0978",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "nodemon --exec babel-node server.js"
   },
@@ -15,7 +16,13 @@
     "@babel/preset-env": "^7.12.13"
   },
   "dependencies": {
-    "nodemon": "^2.0.7"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "socket.io": "^3.1.1"
   },
-  "type": "module"
+  "optionalDependencies": {
+    "bufferutil": "^4.0.3",
+    "utf-8-validate": "^5.0.4"
+  }
 }
