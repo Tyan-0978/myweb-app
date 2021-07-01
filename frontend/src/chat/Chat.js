@@ -59,7 +59,7 @@ function Chat(props) {
 
 	<Col sm={9} style={{ height: bodyHeight }}>
 	  <Container style={{ height: bodyHeight - senderHeight }}>
-	    <Message name="aaaaaaaaaaaaaaaaa" body="1234" theme={ props.theme } />
+	    <Message name="aaaaaaaaaaaaaaaaaa" body="1234" theme={ props.theme } />
 	    <Message name="bb" body="5678" theme={ props.theme } />
 	  </Container>
 	  <div className="chat-sender">
