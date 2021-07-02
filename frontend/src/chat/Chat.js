@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './chat.css';
 import useSize from './useSize.js';
 import Message from './Message.js';
+import socket from '../socket.js';
 
 function Chat(props) {
   const [messageName, setMessageName] = useState("");
@@ -24,9 +25,24 @@ function Chat(props) {
   const bodyHeight = isNarrow ? (height - 150) : (height - 100);
   const senderHeight = isNarrow ? 90 : 50;
 
+  const messageIsValid = () => {
+    if (messageName && messageBody) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleSubmit = () => {
-    console.log(messageName);
-    console.log(messageBody);
+    //console.log(messageName);
+    //console.log(messageBody);
+    if (messageIsValid()) {
+      socket.emit('send message', {
+        name: messageName,
+	body: messageBody
+      });
+      inputRef.current.value = '';
+    }
   };
 
   return (

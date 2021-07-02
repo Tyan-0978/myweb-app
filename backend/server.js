@@ -14,7 +14,15 @@ const io = new Server(httpServer, {
 const __dirname = path.resolve();
 
 io.on("connection", (socket) => {
-  console.log("server connected");
+  console.log("user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+
+  socket.on('send message', (msg) => {
+    console.log(msg.name);
+    console.log(msg.body);
+  });
 });
 
 // connection error
@@ -31,6 +39,11 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
 
+httpServer.listen(9000, () => {
+  console.log('listening on port 9000.');
+});
+/*
 app.listen(9000, () => {
   console.log("Express server running.");
 });
+*/
