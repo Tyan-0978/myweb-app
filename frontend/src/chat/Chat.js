@@ -17,8 +17,17 @@ import socket from '../socket.js';
 function Chat(props) {
   const [messageName, setMessageName] = useState("");
   const [messageBody, setMessageBody] = useState("");
+  const [category, setCategory] = useState("casual");
+  const [messages, setMessages] = useState([]);
   const [width, height] = useSize();
   const inputRef = useRef(null);
+
+  const categToHeader = {
+    casual: '一般',
+    school: '學校',
+    food: '食物',
+    games: '遊戲'
+  };
 
   // parameters for div height settings
   const isNarrow = width < 576; // bootstrap sm
@@ -39,7 +48,9 @@ function Chat(props) {
     if (messageIsValid()) {
       socket.emit('send message', {
         name: messageName,
-	body: messageBody
+	body: messageBody,
+	category: category,
+	time: new Date()
       });
       inputRef.current.value = '';
     }
@@ -50,33 +61,34 @@ function Chat(props) {
       <Row>
         <Col sm={3}>
 	  <ListGroup horizontal={ isNarrow }>
-	    <ListGroup.Item action
+	    <ListGroup.Item action onClick={() => setCategory("casual")}
 	      className={ `chat-sidebar-item ${props.theme}` }
 	    >
 	      一般
 	    </ListGroup.Item>
-	    <ListGroup.Item action
+	    <ListGroup.Item action onClick={() => setCategory("school")}
 	      className={ `chat-sidebar-item ${props.theme}` }
 	    >
 	      學校
 	    </ListGroup.Item>
-	    <ListGroup.Item action
+	    <ListGroup.Item action onClick={() => setCategory("food")}
 	      className={ `chat-sidebar-item ${props.theme}` }
 	    >
 	      食物
 	    </ListGroup.Item>
-	    <ListGroup.Item action
+	    <ListGroup.Item action onClick={() => setCategory("games")}
 	      className={ `chat-sidebar-item ${props.theme}` }
 	    >
-	      音G
+	      遊戲
 	    </ListGroup.Item>
 	  </ListGroup>
 	</Col>
 
 	<Col sm={9} style={{ height: bodyHeight }}>
 	  <Container style={{ height: bodyHeight - senderHeight }}>
-	    <Message name="aaaaaaaaaaaaaaaaaa" body="1234" theme={ props.theme } />
-	    <Message name="bb" body="5678" theme={ props.theme } />
+	    <div class="chat-header">{ categToHeader[category] }</div>
+	    <Message name="aaaaaaaaaaaaaaaaaa" body="1234" time={ 20210709 } theme={ props.theme } />
+	    <Message name="bb" body="5678" time={ Date().substring(0,24) } theme={ props.theme } />
 	  </Container>
 	  <div className="chat-sender">
 	    <Form onSubmit={ e => e.preventDefault() }>
