@@ -22,6 +22,8 @@ io.on("connection", (socket) => {
   socket.on('send message', (msg) => {
     console.log(msg.name);
     console.log(msg.body);
+    console.log(msg.category);
+    console.log(msg.time);
   });
 });
 
