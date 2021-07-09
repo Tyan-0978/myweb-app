@@ -15,3 +15,7 @@
 .message-body {
   overflow-wrap: break-word;
 }
+
+.message-time {
+  overflow-wrap: break-word;
+}

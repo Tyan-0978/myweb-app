@@ -12,7 +12,8 @@ function Message(props) {
       style={{ background: props.theme === "light" ? "#eee" : "#484848" }}
     >
       <Col xs={3} className="message-name">{ props.name }</Col>
-      <Col xs={9} className="message-body">{ props.body }</Col>
+      <Col xs={6} className="message-body">{ props.body }</Col>
+      <Col xs={3} className="message-time">{ props.time }</Col>
     </Row>
   );
 }
