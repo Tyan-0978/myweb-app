@@ -13,17 +13,39 @@ const io = new Server(httpServer, {
 
 const __dirname = path.resolve();
 
+var messages = [
+  {
+    name: 'aaaaaaaaaaaaaaaaa',
+    body: '1234',
+    time: Date().substring(0,24)
+  },
+  {
+    name: 'bb',
+    body: '2784756721328940803630238901278436536310974832904163709578320432',
+    time: Date().substring(0,24)
+  }
+];
+
+// main socket.io works
 io.on("connection", (socket) => {
   console.log("user connected");
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
+  socket.emit('update messages', messages);
+
+  // send initial messages when someone open chat
+  socket.on('initial messages', () => {
+    console.log('initialize chat');
+    socket.emit('update messages', messages);
   });
 
+  // someone sends a message
   socket.on('send message', (msg) => {
-    console.log(msg.name);
-    console.log(msg.body);
-    console.log(msg.category);
-    console.log(msg.time);
+    console.log('new message received');
+    messages.push(msg);
+    socket.emit('update messages', messages);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
   });
 });
 
