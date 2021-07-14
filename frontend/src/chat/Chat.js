@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -50,11 +50,20 @@ function Chat(props) {
         name: messageName,
 	body: messageBody,
 	category: category,
-	time: new Date()
+	time: Date().substring(0,24)
       });
       inputRef.current.value = '';
     }
   };
+
+  socket.on('update messages', (newMessages) => {
+    setMessages(newMessages);
+  });
+
+  useEffect(() => {
+    //console.log('chat is opened');
+    socket.emit('initial messages');
+  }, []);
 
   return (
     <Container className="chat-container">
@@ -87,8 +96,14 @@ function Chat(props) {
 	<Col sm={9} style={{ height: bodyHeight }}>
 	  <Container style={{ height: bodyHeight - senderHeight }}>
 	    <div class="chat-header">{ categToHeader[category] }</div>
-	    <Message name="aaaaaaaaaaaaaaaaaa" body="1234" time={ 20210709 } theme={ props.theme } />
-	    <Message name="bb" body="5678" time={ Date().substring(0,24) } theme={ props.theme } />
+	    { messages.map((msg) => { return (
+	      <Message
+	        name={ msg.name }
+		body={ msg.body }
+		time={ msg.time }
+		theme={ props.theme }
+	      />
+	    )})}
 	  </Container>
 	  <div className="chat-sender">
 	    <Form onSubmit={ e => e.preventDefault() }>
