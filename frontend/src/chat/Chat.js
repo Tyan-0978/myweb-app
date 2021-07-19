@@ -62,8 +62,8 @@ function Chat(props) {
 
   useEffect(() => {
     //console.log('chat is opened');
-    socket.emit('initial messages');
-  }, []);
+    socket.emit('load messages', category);
+  }, [category]);
 
   return (
     <Container className="chat-container">
