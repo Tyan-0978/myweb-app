@@ -16,12 +16,50 @@ const __dirname = path.resolve();
 var messages = [
   {
     name: 'aaaaaaaaaaaaaaaaa',
-    body: '1234',
+    body: 'casual message',
+    category: 'casual',
     time: Date().substring(0,24)
   },
   {
     name: 'bb',
-    body: '2784756721328940803630238901278436536310974832904163709578320432',
+    body: '一般訊息2784756721328940803630238901278436536310974832904163709578320432',
+    category: 'casual',
+    time: Date().substring(0,24)
+  },
+  {
+    name: 'ccc',
+    body: 'school message 學校',
+    category: 'school',
+    time: Date().substring(0,24)
+  },
+  {
+    name: 'ddddddddddddddddddddddddddddddddddddd',
+    body: '食物12784756721328940803630238901278436536310974832904163709578320432',
+    category: 'food',
+    time: Date().substring(0,24)
+  },
+  {
+    name: 'ee',
+    body: 'food message',
+    category: 'food',
+    time: Date().substring(0,24)
+  },
+  {
+    name: 'fff',
+    body: 'food 2 adfqwpjiefovnaofa',
+    category: 'food',
+    time: Date().substring(0,24)
+  },
+  {
+    name: 'ggggggg',
+    body: 'games message',
+    category: 'games',
+    time: Date().substring(0,24)
+  },
+  {
+    name: 'h',
+    body: '遊戲訊息2784756721328940803630238901278436536310974832904163709578320432',
+    category: 'games',
     time: Date().substring(0,24)
   }
 ];
@@ -29,19 +67,18 @@ var messages = [
 // main socket.io works
 io.on("connection", (socket) => {
   console.log("user connected");
-  socket.emit('update messages', messages);
 
   // send initial messages when someone open chat
-  socket.on('initial messages', () => {
-    console.log('initialize chat');
-    socket.emit('update messages', messages);
+  socket.on('load messages', (category) => {
+    console.log('update chat');
+    socket.emit('update messages', messages.filter(m => m.category === category));
   });
 
   // someone sends a message
   socket.on('send message', (msg) => {
     console.log('new message received');
     messages.push(msg);
-    socket.emit('update messages', messages);
+    socket.emit('update messages', messages.filter(m => m.category === msg.category));
   });
 
   socket.on("disconnect", () => {
