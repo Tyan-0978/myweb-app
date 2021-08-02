@@ -56,8 +56,14 @@ function Chat(props) {
     }
   };
 
-  socket.on('update messages', (newMessages) => {
-    setMessages(newMessages);
+  socket.on('update messages', (newMessage) => {
+    if (newMessage.category === category) {
+      setMessages([...messages, newMessage]);
+    }
+  });
+
+  socket.on('initialize messages', (initMessages) => {
+    setMessages(initMessages);
   });
 
   useEffect(() => {

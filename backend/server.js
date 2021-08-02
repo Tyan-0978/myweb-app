@@ -3,6 +3,9 @@ import * as path from 'path';
 import express from 'express';
 import { Server } from 'socket.io';
 
+import mongoose from 'mongoose';
+import ChatMessage from './models/ChatMessage.js';
+
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
@@ -64,21 +67,45 @@ var messages = [
   }
 ];
 
+// connect to database
+const db_url = 'mongodb://localhost:27017/myweb_db';
+mongoose.connect(db_url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('database connected');
+});
+
 // main socket.io works
 io.on("connection", (socket) => {
   console.log("user connected");
 
   // send initial messages when someone open chat
   socket.on('load messages', (category) => {
-    console.log('update chat');
-    socket.emit('update messages', messages.filter(m => m.category === category));
+    console.log('initialize chat');
+    socket.emit('initialize messages', messages.filter(m => m.category === category));
   });
 
   // someone sends a message
   socket.on('send message', (msg) => {
     console.log('new message received');
-    messages.push(msg);
-    socket.emit('update messages', messages.filter(m => m.category === msg.category));
+    const newMessage = new ChatMessage(msg);
+    newMessage.save((error, m) => {
+      if (error) {
+        console.error(error);
+	return;
+      }
+      const allMessages = ChatMessage.find({});
+      console.log(allMessages);
+      io.emit('update messages', msg);
+      console.log('message saved in db');
+    });
+    //messages.push(msg);
+    //socket.emit('update messages', messages.filter(m => m.category === msg.category));
   });
 
   socket.on("disconnect", () => {
