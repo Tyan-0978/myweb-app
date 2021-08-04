@@ -14,58 +14,8 @@ const io = new Server(httpServer, {
   }
 });
 
+// this directory ( myweb_app/backend )
 const __dirname = path.resolve();
-
-var messages = [
-  {
-    name: 'aaaaaaaaaaaaaaaaa',
-    body: 'casual message',
-    category: 'casual',
-    time: Date().substring(0,24)
-  },
-  {
-    name: 'bb',
-    body: '一般訊息2784756721328940803630238901278436536310974832904163709578320432',
-    category: 'casual',
-    time: Date().substring(0,24)
-  },
-  {
-    name: 'ccc',
-    body: 'school message 學校',
-    category: 'school',
-    time: Date().substring(0,24)
-  },
-  {
-    name: 'ddddddddddddddddddddddddddddddddddddd',
-    body: '食物12784756721328940803630238901278436536310974832904163709578320432',
-    category: 'food',
-    time: Date().substring(0,24)
-  },
-  {
-    name: 'ee',
-    body: 'food message',
-    category: 'food',
-    time: Date().substring(0,24)
-  },
-  {
-    name: 'fff',
-    body: 'food 2 adfqwpjiefovnaofa',
-    category: 'food',
-    time: Date().substring(0,24)
-  },
-  {
-    name: 'ggggggg',
-    body: 'games message',
-    category: 'games',
-    time: Date().substring(0,24)
-  },
-  {
-    name: 'h',
-    body: '遊戲訊息2784756721328940803630238901278436536310974832904163709578320432',
-    category: 'games',
-    time: Date().substring(0,24)
-  }
-];
 
 // connect to database
 const db_url = 'mongodb://localhost:27017/myweb_db';
@@ -82,34 +32,34 @@ db.once('open', () => {
 
 // main socket.io works
 io.on("connection", (socket) => {
-  console.log("user connected");
+  socket.removeAllListeners();
+  console.log(`user ${socket.id} connected`);
 
   // send initial messages when someone open chat
-  socket.on('load messages', (category) => {
+  socket.on('load messages', async (category) => {
     console.log('initialize chat');
-    socket.emit('initialize messages', messages.filter(m => m.category === category));
+    const initMessages = await ChatMessage.find({ category: category })
+    socket.emit('initial messages', initMessages);
   });
 
   // someone sends a message
-  socket.on('send message', (msg) => {
+  socket.on('send message', async (msg) => {
     console.log('new message received');
     const newMessage = new ChatMessage(msg);
-    newMessage.save((error, m) => {
+    await newMessage.save( async (error, m) => {
       if (error) {
         console.error(error);
 	return;
       }
-      const allMessages = ChatMessage.find({});
-      console.log(allMessages);
-      io.emit('update messages', msg);
-      console.log('message saved in db');
+
+      // emit new message to every client
+      io.emit('update messages', newMessage);
+      console.log('new message emitted');
     });
-    //messages.push(msg);
-    //socket.emit('update messages', messages.filter(m => m.category === msg.category));
   });
 
   socket.on("disconnect", () => {
-    console.log("user disconnected");
+    console.log(`user ${socket.id} disconnected`);
   });
 });
 
@@ -130,8 +80,3 @@ app.get('/*', (req, res) => {
 httpServer.listen(9000, () => {
   console.log('listening on port 9000.');
 });
-/*
-app.listen(9000, () => {
-  console.log("Express server running.");
-});
-*/
