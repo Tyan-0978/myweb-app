@@ -34,18 +34,8 @@ function Chat(props) {
   const bodyHeight = isNarrow ? (height - 150) : (height - 100);
   const senderHeight = isNarrow ? 90 : 50;
 
-  const messageIsValid = () => {
-    if (messageName && messageBody) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   const handleSubmit = () => {
-    //console.log(messageName);
-    //console.log(messageBody);
-    if (messageIsValid()) {
+    if (messageName && messageBody) { // check if name or message is empty
       socket.emit('send message', {
         name: messageName,
 	body: messageBody,
@@ -56,18 +46,36 @@ function Chat(props) {
     }
   };
 
-  socket.on('update messages', (newMessage) => {
-    if (newMessage.category === category) {
-      setMessages([...messages, newMessage]);
-    }
-  });
+  useEffect(() => {
+    // for debug
+    socket.onAny((eventName) => {
+      console.log(eventName);
+    });
 
-  socket.on('initialize messages', (initMessages) => {
-    setMessages(initMessages);
+    // server sends new messages when category is changed
+    socket.on('initial messages', (initMessages) => {
+      setMessages(initMessages);
+    });
+
+    // updates messages when someone sends a new message
+    socket.on('update messages', (newMessage) => {
+      //console.log(category);
+      //console.log(newMessage.category);
+      if (newMessage.category === category) {
+        setMessages([...messages, newMessage]);
+      }
+    });
+
+    // remove socket.io listeners
+    return () => {
+      socket.offAny();
+      socket.off('initial messages');
+      socket.off('update messages');
+    };
   });
 
   useEffect(() => {
-    //console.log('chat is opened');
+    console.log(category);
     socket.emit('load messages', category);
   }, [category]);
 
