@@ -33,6 +33,7 @@ function Chat(props) {
   const isNarrow = width < 576; // bootstrap sm
   const bodyHeight = isNarrow ? (height - 150) : (height - 100);
   const senderHeight = isNarrow ? 90 : 50;
+  const messagesHeight = bodyHeight - senderHeight - 50; // title height
 
   const handleSubmit = () => {
     if (messageName && messageBody) { // check if name or message is empty
@@ -108,8 +109,11 @@ function Chat(props) {
 	</Col>
 
 	<Col sm={9} style={{ height: bodyHeight }}>
-	  <Container style={{ height: bodyHeight - senderHeight }}>
-	    <div class="chat-header">{ categToHeader[category] }</div>
+	  <div class="chat-header">{ categToHeader[category] }</div>
+	  <Container
+	    className='chat-messages'
+	    style={{ height: messagesHeight }}
+	  >
 	    { messages.map((msg) => { return (
 	      <Message
 	        name={ msg.name }

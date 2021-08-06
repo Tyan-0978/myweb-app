@@ -19,8 +19,8 @@
   border: 1px solid black;
 }
 
-.chat-message-list {
-  border: 1px solid black;
+.chat-messages {
+  overflow: auto;
 }
 
 .chat-header {
