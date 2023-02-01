@@ -14,11 +14,19 @@ import useSize from './useSize.js';
 import Message from './Message.js';
 import socket from '../socket.js';
 
+const noServerMessage = {
+  name: '網頁工程師',
+  body: '閒聊版暫未開放，敬請見諒',
+  category: 'casual',
+  time: Date().substring(0,24)
+}
+
 function Chat(props) {
   const [messageName, setMessageName] = useState("");
   const [messageBody, setMessageBody] = useState("");
   const [category, setCategory] = useState("casual");
-  const [messages, setMessages] = useState([]);
+  //const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([noServerMessage]);
   const [width, height] = useSize();
   const inputRef = useRef(null);
 
@@ -35,6 +43,7 @@ function Chat(props) {
   const senderHeight = isNarrow ? 90 : 50;
   const messagesHeight = bodyHeight - senderHeight - 50; // title height
 
+  /*
   const handleSubmit = () => {
     if (messageName && messageBody) { // check if name or message is empty
       socket.emit('send message', {
@@ -45,6 +54,10 @@ function Chat(props) {
       });
       inputRef.current.value = '';
     }
+  };
+  */
+  const handleSubmit = () => {
+    return
   };
 
   useEffect(() => {
@@ -176,6 +189,7 @@ function Chat(props) {
 		  <Button
 		    variant={ props.theme } onClick={ handleSubmit }
                     className={ `chat-submit ${props.theme}` }
+		    disabled
 		  >
 		    <FontAwesomeIcon icon="paper-plane" />
 		  </Button>
