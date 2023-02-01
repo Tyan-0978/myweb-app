@@ -1,9 +1,21 @@
 # Tyan-0978's web app
 
-**Web currently not available: working on React v18 update migration**
+## Status
 
-Pages:
+Web currently not available: working on React v18 update
 
-- `home` or `/`: home page
-- `/blog`: personal blog (currently empty)
-- `/chat`: public chat (currently offline)
+For your interest, here's another web app I made: [Textman Generator](https://github.com/Tyan-0978/textman_generator)
+
+## Features
+
+ - Responsive: dynamically adjust component geometry and placement for a better view on different devices
+ - Dark theme: change the web color theme by one click
+ - More: working on blog and chat pages
+
+Home page preview:
+
+![](https://i.imgur.com/w8LK8E9.png)
+
+Chat page preview:
+
+![](https://i.imgur.com/pHK1a4q.png)
