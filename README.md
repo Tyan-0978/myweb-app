@@ -8,9 +8,9 @@ For your interest, here's another web app I made: [Textman Generator](https://gi
 
 ## Features
 
- - Responsive: dynamically adjust component geometry and placement for a better view on different devices
- - Dark theme: change the web color theme by one click
- - More: working on blog and chat pages
+- Dark theme: change the web color theme by one click
+- Responsive: dynamically adjust component geometry and placement for a better view on different devices
+- More: working on blog and chat pages
 
 Home page preview:
 
